@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-css-modules"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "color-hex-length": "long",
+    "max-empty-lines": 1,
+    "indentation": 2,
+    "rule-empty-line-before": ["always"]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "id": "comviq-test-extension",
   "name": "Test extension for comviq",
-  "srcdoc": "./dist/index.html",
+  "src": "./index.html",
   "fieldTypes": ["Object"]
 }

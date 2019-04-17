@@ -1,0 +1,8 @@
+:global(.cf-form-field) {
+
+  &.inline {
+    display: inline-block;
+    margin-right: 1rem;
+    width: 10rem;
+  }
+}

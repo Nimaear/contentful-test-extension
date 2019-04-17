@@ -1,6 +1,6 @@
 //@flow
 require( 'dotenv' ).config();
-
+const argv = require( 'yargs' ).argv;
 const extensionConfig = require( '../extension.json' );
 const cli = require( 'contentful-extension-cli' );
 const fs = require( 'fs' );
@@ -11,17 +11,36 @@ const client = cli.createClient({
   host: 'https://api.contentful.com', // optional, default value shown
 });
 
+const extensionName = `Comviq ${argv.extension || 'Layout'}`;
+
 const handleFound = ( extension ) => {
   // We need the version in case this was already saved.
   const version = extension.sys.version;
+  console.log( 'Found', {
+    version,
+    ...extensionConfig,
+    id: `${extensionName.toLowerCase().replace( ' ', '-' )}`,
+    name: extensionName,
+  });
   save({
     version,
     ...extensionConfig,
+    id: `${extensionName.toLowerCase().replace( ' ', '-' )}`,
+    name: extensionName,
   });
 };
 
 const handleNotFound = () => {
-  save( extensionConfig );
+  console.log( 'Not found', {
+    ...extensionConfig,
+    id: `${extensionName.toLowerCase().replace( ' ', '-' )}`,
+    name: extensionName,
+  });
+  save({
+    ...extensionConfig,
+    id: `${extensionName.toLowerCase().replace( ' ', '-' )}`,
+    name: extensionName,
+  });
 };
 
 const save = ( config ) => {

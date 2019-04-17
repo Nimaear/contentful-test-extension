@@ -1,0 +1,25 @@
+.button {
+  margin: 0;
+  padding: 1.5rem;
+  box-shadow: $boxShadow;
+  display: inline-block;
+  border: none;
+  background: none;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease-in-out;
+
+  & + .button {
+    margin-left: 2rem;
+  }
+
+  &:hover {
+    box-shadow: $boxShadowOver;
+  }
+
+  &.active {
+    background-color: #eeeeee;
+    box-shadow: none;
+  }
+}

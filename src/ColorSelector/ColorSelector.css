@@ -1,0 +1,55 @@
+.colorSelector {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0 2px;
+  height: 36px;
+  line-height: 1.5;
+  vertical-align: bottom;
+  cursor: pointer;
+
+  .color {
+    width: 6rem;
+    height: 6rem;
+    display: inline-block;
+    padding: 0 2px;
+    transition: box-shadow 0.15s ease-in-out;
+    box-shadow: $boxShadow;
+
+    &:hover {
+      box-shadow: $boxShadowOver;
+    }
+
+    &.active {
+      border: solid 2px rgba(64, 128, 64, 0.5);
+      box-shadow: $boxShadowOver;
+    }
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    &.canvas {
+      background-color: $canvas;
+    }
+
+    &.white {
+      background-color: $white;
+    }
+
+    &.black {
+      background-color: $black;
+
+      &.active {
+        border: solid 2px rgba(200, 200, 200, 0.5);
+      }
+    }
+
+    &.grey {
+      background-color: $lightGrey;
+    }
+
+    &.magenta {
+      background-color: $magenta;
+    }
+  }
+}

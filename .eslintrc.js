@@ -11,6 +11,12 @@ module.exports = {
     flowtype: {
       onlyFilesWithFlowAnnotation: true,
     },
+    react: {
+      createClass: 'createReactClass', // Regex for Component Factory to use,
+      pragma: 'React', // Pragma to use, default to "React"
+      version: '16.8.3', // React version. "detect" automatically picks the version you have installed.
+      flowVersion: '0.53', // Flow version
+    },
   },
   rules: {
     'max-len': [1, 120, 2, { ignoreComments: true }],

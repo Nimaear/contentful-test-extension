@@ -5,3 +5,11 @@ html {
 body {
   font-size: 2rem;
 }
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.indented {
+  margin-left: 1rem;
+}

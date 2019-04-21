@@ -1,9 +1,9 @@
-const webpack = require( 'webpack' );
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const HtmlWebpackInlineSourcePlugin = require( 'html-webpack-inline-source-plugin' );
-const ExtractCssChunks = require( 'extract-css-chunks-webpack-plugin' );
-const createMinifier = require( 'css-loader-minify-class' );
-const argv = require( 'yargs' ).argv;
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const createMinifier = require('css-loader-minify-class');
+const argv = require('yargs').argv;
 const path = require('path');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -20,8 +20,8 @@ const postCssLoader = {
     sourceMap: true,
   },
 };
-if ( !isDev ) {
-  postCssLoader.options.plugins = require( '../postcss.plugins.js' );
+if (!isDev) {
+  postCssLoader.options.plugins = require('../postcss.plugins.js');
 }
 
 module.exports = {
@@ -31,12 +31,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: [ 'babel-loader' ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [ 'eslint-loader' ],
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
@@ -59,7 +54,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '*', '.js', '.jsx' ],
+    extensions: ['*', '.js', '.jsx'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -76,12 +71,12 @@ module.exports = {
     new HtmlWebpackInlineSourcePlugin(),
   ],
   output: {
-    path: path.resolve(__dirname,'..','dist'),
+    path: path.resolve(__dirname, '..', 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: '/dist',
+    contentBase: '../dist',
     hot: true,
     port: 3001,
   },

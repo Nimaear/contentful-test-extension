@@ -4,26 +4,25 @@ import Color from './Color';
 import css from './ColorSelector.css';
 
 type Props = {
-  children: React.Node,
   value: any,
-  onSelect: ( value: any ) => void,
+  onSelect: (value: any) => void,
 };
 
-const colors = [ 'white', 'black', 'canvas', 'grey', 'magenta' ];
+const colors = ['white', 'black', 'canvas', 'grey', 'magenta'];
 
 const { useCallback } = React;
 
-const ColorSelector = ({ value, onSelect }: Props ) => {
+const ColorSelector = ({ value, onSelect }: Props) => {
   const handleChange = useCallback(
-    ( color ) => {
-      onSelect && onSelect( color );
+    color => {
+      onSelect && onSelect(color);
     },
-    [ onSelect ]
+    [onSelect]
   );
 
   return (
     <div className={css.colorSelector}>
-      {colors.map(( color ) => {
+      {colors.map(color => {
         return <Color key={color} onSelect={handleChange} color={color} active={value === color} />;
       })}
     </div>

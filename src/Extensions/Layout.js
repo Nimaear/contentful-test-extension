@@ -7,11 +7,11 @@ import LeftAlign from '../Svg/LeftAlign';
 import CenterAlign from '../Svg/CenterAlign';
 import Justify from '../Svg/Justify';
 import Grid from '../Svg/Grid';
-import Button from '../Svg/Button';
+import Button from '../Button/Button';
 import ColorSelector from '../ColorSelector/ColorSelector';
 import BooleanEditor from '../BooleanEditor/BooleanEditor';
 import GridEditor from '../GridEditor/GridEditor';
-import './Extension.css';
+import css from '../Extensions/Extension.css';
 import useApi from '../api';
 
 const { useCallback, Fragment } = React;
@@ -29,7 +29,7 @@ const defaultContainerOptions = {
 };
 
 const Layout = () => {
-  const [ value, setValue ] = useApi({
+  const [value, setValue] = useApi({
     color: 'grey',
     isFullScreen: false,
     type: 'container',
@@ -42,22 +42,22 @@ const Layout = () => {
   const container = value.container || {};
 
   const setColor = useCallback(
-    ( color ) => {
+    color => {
       setValue({
         ...value,
         color,
       });
     },
-    [ value, setValue ]
+    [value, setValue]
   );
 
   const setType = useCallback(
-    ( type ) => {
+    type => {
       const newValue = {
         ...value,
         type,
       };
-      if ( type === 'grid' ) {
+      if (type === 'grid') {
         newValue.grid = {
           ...defaultGripOptions,
           ...newValue.grid,
@@ -68,30 +68,30 @@ const Layout = () => {
           ...newValue.container,
         };
       }
-      setValue( newValue );
+      setValue(newValue);
     },
-    [ value, setValue ]
+    [value, setValue]
   );
   const setGrid = useCallback(
-    ( grid ) => {
+    grid => {
       setValue({
         ...value,
         grid,
       });
     },
-    [ value, setValue ]
+    [value, setValue]
   );
   const setIsFullscreen = useCallback(
-    ( isFullScreen ) => {
+    isFullScreen => {
       setValue({
         ...value,
         isFullScreen,
       });
     },
-    [ value, setValue ]
+    [value, setValue]
   );
   const setHAlign = useCallback(
-    ( hAlign ) => {
+    hAlign => {
       setValue({
         ...value,
         container: {
@@ -100,7 +100,7 @@ const Layout = () => {
         },
       });
     },
-    [ value, setValue ]
+    [value, setValue]
   );
   const hasTextAlignment = value.type === 'container' && !value.isFullScreen;
   return (
@@ -140,6 +140,11 @@ const Layout = () => {
   );
 };
 
-ReactDOM.render( <Layout />, document.getElementById( 'app' ));
+const appEl = document.getElementById('app');
+if (appEl) {
+  ReactDOM.render(<Layout />, appEl);
+}
 
-module.hot.accept();
+if (module.hot) {
+  module.hot.accept();
+}

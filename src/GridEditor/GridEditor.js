@@ -1,11 +1,11 @@
 //@flow
 import * as React from 'react';
-import css from './GridEditor.css';
+import css from '../Extensions/Extension.css';
 import FormField from '../FormField/FormField';
 import Input from '../Input/Input';
 import TopAlign from '../Svg/TopAlign';
 import MiddleAlign from '../Svg/MiddleAlign';
-import Button from '../Svg/Button';
+import Button from '../Button/Button';
 
 type Props = {
   grid: {
@@ -13,57 +13,58 @@ type Props = {
     columnsOnTablet: number,
     columnsOnDesktop: number,
     columnsOnWidescreen: number,
+    vAlign: 'top' | 'middle' | 'bottom',
   },
-  onChange: ( value: any ) => void,
+  onChange: (value: any) => void,
 };
 
 const { useCallback, Fragment } = React;
 
-const GridEditor = ({ grid, onChange }: Props ) => {
+const GridEditor = ({ grid, onChange }: Props) => {
   const setColumnOnMobile = useCallback(
-    ( columnsOnMobile ) => {
+    columnsOnMobile => {
       onChange({
         ...grid,
-        columnsOnMobile: parseInt( columnsOnMobile, 10 ),
+        columnsOnMobile: parseInt(columnsOnMobile, 10),
       });
     },
-    [ grid, onChange ]
+    [grid, onChange]
   );
   const setColumnOnTablet = useCallback(
-    ( columnsOnTablet ) => {
+    columnsOnTablet => {
       onChange({
         ...grid,
-        columnsOnTablet: parseInt( columnsOnTablet, 10 ),
+        columnsOnTablet: parseInt(columnsOnTablet, 10),
       });
     },
-    [ grid, onChange ]
+    [grid, onChange]
   );
   const setColumnOnDesktop = useCallback(
-    ( columnsOnDesktop ) => {
+    columnsOnDesktop => {
       onChange({
         ...grid,
-        columnsOnDesktop: parseInt( columnsOnDesktop, 10 ),
+        columnsOnDesktop: parseInt(columnsOnDesktop, 10),
       });
     },
-    [ grid, onChange ]
+    [grid, onChange]
   );
   const setColumnOnWidescreen = useCallback(
-    ( columnsOnWidescreen ) => {
+    columnsOnWidescreen => {
       onChange({
         ...grid,
-        columnsOnWidescreen: parseInt( columnsOnWidescreen, 10 ),
+        columnsOnWidescreen: parseInt(columnsOnWidescreen, 10),
       });
     },
-    [ grid, onChange ]
+    [grid, onChange]
   );
   const setVAlign = useCallback(
-    ( vAlign ) => {
+    vAlign => {
       onChange({
         ...grid,
         vAlign,
       });
     },
-    [ grid, onChange ]
+    [grid, onChange]
   );
   return (
     <Fragment>

@@ -22,4 +22,24 @@
     background-color: #eeeeee;
     box-shadow: none;
   }
+
+  &.warning {
+    color: #9f6000;
+    background-color: #feefb3;
+  }
+
+  &.info {
+    color: #00529b;
+    background-color: #bde5f8;
+  }
+
+  &.error {
+    color: #d8000c;
+    background-color: #ffd2d2;
+  }
+
+  &.success {
+    color: #4f8a10;
+    background-color: #dff2bf;
+  }
 }

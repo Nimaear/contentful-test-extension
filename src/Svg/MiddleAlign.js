@@ -2,10 +2,10 @@
 import * as React from 'react';
 
 type Props = {
-  color: string,
+  color?: string,
 };
 
-const MiddleAlign = ({ color = '#000000' }: Props ) => {
+const MiddleAlign = ({ color = '#000000' }: Props) => {
   return (
     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <g stroke="none" strokeWidth="1" fill={color} fillRule="evenodd">

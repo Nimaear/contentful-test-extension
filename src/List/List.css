@@ -1,0 +1,29 @@
+.list {
+  width: 687px;
+  box-sizing: border-box;
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  padding: 4px;
+  width: 100%;
+  border-style: none none solid none;
+  border-color: #dddddd;
+  border-width: 1px;
+}
+
+.group {
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 40%;
+  padding-right: 1rem;
+}
+
+.actions {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 20%;
+}

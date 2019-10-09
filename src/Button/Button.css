@@ -10,6 +10,10 @@
   cursor: pointer;
   transition: box-shadow 0.15s ease-in-out;
 
+  &.compact {
+    padding: 2px;
+  }
+
   & + .button {
     margin-left: 2rem;
   }

@@ -4,84 +4,84 @@ import * as React from 'react';
 
 const { useEffect, useState, useCallback } = React;
 
-const setupApiForDev = ( callback ) => {
+const setupApiForDev = callback => {
   let cache = null;
 
   const stubApi = {
     window: {
       startAutoResizer: () => {
-        console.log( 'api:startAutoResizer' );
+        console.log('api:startAutoResizer');
       },
     },
     field: {
       getValue: () => {
         return cache;
       },
-      setValue: ( value ) => {
-        console.log( 'api:setValue', value );
+      setValue: value => {
+        console.log('api:setValue', value);
         cache = value;
         return Promise.resolve();
       },
     },
   };
-  callback( stubApi );
+  callback(stubApi);
 };
 
-const setupApi = ( callback ) => {
+const setupApi = callback => {
   var cfExt = window.contentfulExtension || window.contentfulWidget;
-  cfExt.init(( api ) => {
-    callback( api );
+  cfExt.init(api => {
+    callback(api);
   });
 };
 
-const initApi = ( callback ) => {
-  if ( process.env.NODE_ENV === 'development' ) {
-    setupApiForDev( callback );
+const initApi = callback => {
+  if (process.env.NODE_ENV === 'development') {
+    setupApiForDev(callback);
   } else {
-    setupApi( callback );
+    setupApi(callback);
   }
 };
 
 let timeout;
 
-const useApi = ( defaultValues ) => {
-  const [ api, setApi ] = useState( null );
-  const [ value, setValue ] = useState( defaultValues );
+const useApi = defaultValues => {
+  const [api, setApi] = useState(null);
+  const [value, setValue] = useState(defaultValues);
 
   const save = useCallback(
-    ( newValue ) => {
-      if ( timeout ) {
-        clearTimeout( timeout );
+    newValue => {
+      if (timeout) {
+        clearTimeout(timeout);
         timeout = null;
       }
       timeout = setTimeout(() => {
-        api.field.setValue( newValue );
-      }, 300 );
+        api.field.setValue(newValue);
+      }, 300);
     },
-    [ api ]
+    [api]
   );
 
   useEffect(() => {
-    initApi(( cfApi ) => {
+    initApi(cfApi => {
       cfApi.window.startAutoResizer();
       const storedValue = cfApi.field.getValue();
-      if ( storedValue ) {
-        setValue( storedValue );
+      if (storedValue) {
+        setValue(storedValue);
       } else {
-        cfApi.field.setValue( value );
+        cfApi.field.setValue(value);
       }
-      setApi( cfApi );
+      setApi(cfApi);
     });
-  }, [ setApi, setValue ]);
+  }, [setApi, setValue]);
 
   const syncValue = useCallback(
-    ( newValue ) => {
-      save( newValue );
-      setValue( newValue );
+    newValue => {
+      save(newValue);
+      setValue(newValue);
     },
-    [ api, setValue ]
+    [api, setValue]
   );
-  return [ value, syncValue ];
+  return [value, syncValue];
 };
 
 export default useApi;
